@@ -1,8 +1,17 @@
-# React + Vite
+# Business Chatbot Web Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a business chatbot web application that utilizes AI models from Hugging Face to provide intelligent responses to users. The backend is powered by Flask, and the frontend is built with React and styled using Tailwind CSS. The application is designed to facilitate seamless business communication through an intuitive chat interface.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **AI-Powered Chatbot**: Uses Hugging Face models to deliver intelligent and context-aware responses.
+- **Flask Backend**: A lightweight Python-based backend to handle API requests and manage communication between the frontend and the Hugging Face AI models.
+- **React Frontend**: A modern and responsive user interface, built using React to ensure a smooth user experience.
+- **Tailwind CSS**: Utilizes Tailwind for a responsive and clean design.
+- **Scalable Architecture**: The app is designed with scalability in mind, making it easy to add more features and improve functionality.
+
+## Tech Stack
+
+- **Backend**: Flask (Python)
+- **Frontend**: React, Tailwind CSS
+- **AI Models**: Hugging Face (NLP models)
