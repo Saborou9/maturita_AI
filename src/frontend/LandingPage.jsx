@@ -1,12 +1,16 @@
 import React from 'react';
-import HeroSection from './components/HeroSection'
+import Navbar from './components/Navbar';
+import HeroSection from './components/HeroSection';
+import Features from './components/Features';
 
-function App() {
+const LandingPage = () => {
   return (
-    <div className='bg-black'>
+    <div className="bg-black min-h-screen">
+      <Navbar />
       <HeroSection />
+      <Features />
     </div>
   );
-}
+};
 
-export default App;
+export default LandingPage;
