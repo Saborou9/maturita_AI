@@ -5,7 +5,7 @@ import Features from './components/Features';
 
 const LandingPage = () => {
   return (
-    <div className="bg-black min-h-screen">
+    <div className="bg-black max-h-screen">
       <Navbar />
       <HeroSection />
       <Features />
