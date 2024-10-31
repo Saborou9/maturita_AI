@@ -2,6 +2,7 @@ import './App.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import LandingPage from './frontend/LandingPage'
 import SignUp from './frontend/components/SignUp'
+import Chat from './frontend/components/Chat'
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/chat" element={<Chat />} />
         </Routes>
       </div>
     </Router>
