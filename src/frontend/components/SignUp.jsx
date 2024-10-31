@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { register } from '../services/api';
 import Navbar from './Navbar';
 
 const SignUp = () => {
@@ -17,10 +18,24 @@ const SignUp = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log('Form submitted:', formData);
+    setError('');
+
+    if (formData.password !== formData.confirmPassword) {
+      setError('Passwords do not match');
+      return;
+    }
+
+    try {
+      await register(formData);
+      navigate('/login'); // We'll create this route later
+    } catch (err) {
+      setError(err.error || 'An error occurred during registration');
+    }
   };
 
   return (
@@ -39,6 +54,11 @@ const SignUp = () => {
             </Link>
           </p>
         </div>
+        {error && (
+          <div className="bg-red-500 text-white p-3 rounded-lg mb-4">
+            {error}
+          </div>
+        )}
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <div className="space-y-4">
             <div>
