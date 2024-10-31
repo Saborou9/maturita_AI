@@ -38,3 +38,4 @@ out/
 
 # OS files
 Thumbs.db
+.aider*
