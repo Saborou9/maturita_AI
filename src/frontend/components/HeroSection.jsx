@@ -18,7 +18,7 @@ const HeroSection = () => {
         {/* Call to Action Buttons */}
         <div className="flex flex-col md:flex-row gap-4 justify-center">
           <a
-            href="#"
+            href="/signup"
             className="bg-green-500 text-white px-8 py-4 rounded-full font-semibold hover:bg-green-600 transition transform hover:scale-105"
           >
             Start Free Trial
