@@ -21,6 +21,21 @@ const Features = () => {
               title: "Smart Recommendations",
               description: "Receive personalized suggestions to improve your business performance",
               icon: "💡"
+            },
+            {
+              title: "Predictive Analytics",
+              description: "Forecast future trends and make data-driven decisions with confidence",
+              icon: "🎯"
+            },
+            {
+              title: "Automated Reporting",
+              description: "Generate comprehensive reports automatically with detailed insights",
+              icon: "📈"
+            },
+            {
+              title: "24/7 Support",
+              description: "Access our dedicated support team anytime you need assistance",
+              icon: "🔧"
             }
           ].map((feature, index) => (
             <div key={index} className="bg-gray-900 p-6 rounded-lg hover:transform hover:scale-105 transition duration-300">
