@@ -2,7 +2,7 @@ import React from 'react';
 
 const HeroSection = () => {
   return (
-    <section className="bg-black min-h-screen flex flex-col justify-center items-center text-center pt-20">
+    <section className="bg-black min-h-screen w-full flex flex-col justify-center items-center text-center pt-20">
       <div className="max-w-7xl mx-auto px-4">
         {/* Headline */}
         <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">

@@ -2,8 +2,8 @@ import React from 'react';
 
 const Navbar = () => {
   return (
-    <nav className="bg-black py-4 px-6 fixed w-full top-0 z-50">
-      <div className="max-w-7xl mx-auto flex justify-between items-center">
+    <nav className="bg-black py-4 fixed w-full top-0 z-50">
+      <div className="w-full max-w-7xl mx-auto flex justify-between items-center px-6">
         <div className="text-white text-2xl font-bold">BusinessAI</div>
         <div className="hidden md:flex space-x-8">
           <a href="#features" className="text-white hover:text-green-400 transition">Features</a>

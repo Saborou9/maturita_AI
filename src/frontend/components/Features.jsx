@@ -2,7 +2,7 @@ import React from 'react';
 
 const Features = () => {
   return (
-    <section id="features" className="bg-black py-20">
+    <section id="features" className="bg-black py-20 w-full">
       <div className="max-w-7xl mx-auto px-4">
         <h2 className="text-4xl font-bold text-white text-center mb-12">Powerful Features</h2>
         <div className="grid md:grid-cols-3 gap-8">
