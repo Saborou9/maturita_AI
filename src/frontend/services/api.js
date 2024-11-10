@@ -5,10 +5,7 @@ const API_URL = 'http://localhost:5000/api';
 const api = axios.create({
   baseURL: API_URL,
   headers: {
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': '',
-    'Access-Control-Allow-Origin': '',
+    'Content-Type': 'application/json'
   },
   withCredentials: true,
 });

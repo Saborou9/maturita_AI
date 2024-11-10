@@ -14,7 +14,7 @@ CORS(app,
      resources={r"/api/*": {
          "origins": ["http://localhost:5173"],  # Your frontend origin
          "methods": ["GET", "POST", "OPTIONS"],
-         "allow_headers": ["Content-Type", "Authorization"],
+         "allow_headers": ["Content-Type", "Authorization", "Origin"],
          "supports_credentials": True
      }})
 
