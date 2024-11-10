@@ -2,6 +2,7 @@ import './App.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import LandingPage from './frontend/LandingPage'
 import SignUp from './frontend/components/SignUp'
+import Login from './frontend/components/Login'
 import Chat from './frontend/components/Chat'
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/chat" element={<Chat />} />
         </Routes>
       </div>
