@@ -48,7 +48,11 @@ const SignUp = () => {
             Create your account
           </h2>
           <p className="mt-2 text-center text-sm text-gray-400">
-            Or{' '}
+            Already have an account?{' '}
+            <Link to="/login" className="font-medium text-green-500 hover:text-green-400">
+              Log in
+            </Link>
+            {' '}or{' '}
             <Link to="/" className="font-medium text-green-500 hover:text-green-400">
               return to home
             </Link>
