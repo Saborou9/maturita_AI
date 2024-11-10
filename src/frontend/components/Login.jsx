@@ -25,7 +25,7 @@ const Login = () => {
 
     try {
       await login(formData);
-      navigate('/dashboard'); // We'll create this route later
+      navigate('/chat'); // Route to chat after successful login
     } catch (err) {
       setError(err.error || 'An error occurred during login');
     }
