@@ -10,7 +10,7 @@ app.config.from_object(Config)
 # Initialize extensions
 db.init_app(app)
 jwt = JWTManager(app)
-CORS(app)
+CORS(app, resources={r"/api/*": {"origins": "http://localhost:3000"}}, supports_credentials=True)
 
 @app.route('/api/register', methods=['POST'])
 def register():
