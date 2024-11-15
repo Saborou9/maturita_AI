@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: '/api', // This will use Vite's proxy to forward requests to the backend
+  baseURL: '/api',
   headers: {
     'Content-Type': 'application/json'
   },
@@ -11,6 +11,7 @@ const api = axios.create({
 // Add token to requests if it exists
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem('token');
+  console.log(localStorage.getItem('token'));
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
