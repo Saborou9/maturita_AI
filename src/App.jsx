@@ -4,6 +4,7 @@ import LandingPage from './frontend/LandingPage'
 import SignUp from './frontend/components/SignUp'
 import Login from './frontend/components/Login'
 import Chat from './frontend/components/Chat'
+import TutorialPage from './frontend/components/TutorialPage'
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
           <Route path="/chat" element={<Chat />} />
+          <Route path='/tutorial' element={<TutorialPage/>} />
         </Routes>
       </div>
     </Router>

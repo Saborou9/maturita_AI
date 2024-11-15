@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import sys
-from buddy.crew import BuddyCrew
+from buddy.src.buddy.MarketAnalysisCrew import BuddyCrew
 
 # This main file is intended to be a way for you to run your
 # crew locally, so refrain from adding unnecessary logic into this file.

@@ -40,6 +40,7 @@ const Navbar = () => {
           <a href="#features" className="text-white hover:text-green-400 transition">Features</a>
           <a href="#benefits" className="text-white hover:text-green-400 transition">Benefits</a>
           <a href="#pricing" className="text-white hover:text-green-400 transition">Pricing</a>
+          <Link to="/tutorial" className="text-white hover:text-green-400 transition">How to Ask Questions</Link>
         </div>
         {user ? (
           <div className="relative" ref={dropdownRef}>

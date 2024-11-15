@@ -1,17 +1,23 @@
-research_task:
+trend_analysis_task:
   description: >
-    Conduct a thorough research about {topic}
-    Make sure you find any interesting and relevant information given
-    the current year is 2024.
+    Conduct an in-depth analysis of current market trends.
+    Gather and summarize the 10 most relevant trends related to business expansion in 2024.
   expected_output: >
-    A list with 10 bullet points of the most relevant information about {topic}
-  agent: researcher
+    A list with 10 bullet points summarizing the key market trends relevant to business expansion.
+  agent: trend_researcher
 
-reporting_task:
+competitor_analysis_task:
   description: >
-    Review the context you got and expand each topic into a full section for a report.
-    Make sure the report is detailed and contains any and all relevant information.
+    Analyze competitors in the market.
+    Identify their strengths, weaknesses, and areas where the company can outperform them.
   expected_output: >
-    A fully fledge reports with the mains topics, each with a full section of information.
-    Formatted as markdown without '```'
-  agent: reporting_analyst
+    A detailed markdown report listing competitors, their key strengths, weaknesses, and potential market gaps.
+  agent: competitor_analyst
+
+audience_insights_task:
+  description: >
+    Analyze audience demographics and behaviors to identify potential new markets or segments.
+    Suggest actionable recommendations for expanding the audience reach.
+  expected_output: >
+    A list of audience insights and recommendations formatted as markdown.
+  agent: audience_insights_specialist
