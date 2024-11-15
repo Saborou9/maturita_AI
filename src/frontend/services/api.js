@@ -1,9 +1,7 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api';
-
 const api = axios.create({
-  baseURL: API_URL,
+  baseURL: '/api', // This will use Vite's proxy to forward requests to the backend
   headers: {
     'Content-Type': 'application/json'
   },
@@ -21,7 +19,7 @@ api.interceptors.request.use((config) => {
 
 export const register = async (userData) => {
   try {
-    const response = await api.post('/register', userData);
+    const response = await api.post('/register', userData); // Calls /api/register
     return response.data;
   } catch (error) {
     throw error.response.data;
@@ -30,7 +28,7 @@ export const register = async (userData) => {
 
 export const login = async (credentials) => {
   try {
-    const response = await api.post('/login', credentials);
+    const response = await api.post('/login', credentials); // Calls /api/login
     localStorage.setItem('token', response.data.access_token);
     return response.data;
   } catch (error) {
@@ -40,7 +38,7 @@ export const login = async (credentials) => {
 
 export const getCurrentUser = async () => {
   try {
-    const response = await api.get('/user');
+    const response = await api.get('/user'); // Calls /api/user
     return response.data;
   } catch (error) {
     throw error.response.data;

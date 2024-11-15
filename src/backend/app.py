@@ -3,23 +3,30 @@ from flask_cors import CORS
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 from models import db, User
 from config import Config
+import logging
 
 app = Flask(__name__)
 app.config.from_object(Config)
-
-# Initialize extensions
 db.init_app(app)
 jwt = JWTManager(app)
-CORS(app, 
-     resources={r"/api/*": {
-         "origins": ["http://localhost:5173"],  # Your frontend origin
-         "methods": ["GET", "POST", "OPTIONS"],
-         "allow_headers": ["Content-Type", "Authorization", "Origin"],
-         "supports_credentials": True
-     }})
+CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
 
-@app.route('/api/register', methods=['POST'])
+logging.basicConfig(level=logging.DEBUG)
+
+@app.route('/api/register', methods=['OPTIONS', 'POST'])
 def register():
+    if request.method == 'OPTIONS':
+        response = make_response('', 204)
+        response.headers['Access-Control-Allow-Origin'] = 'http://localhost:5173'
+        response.headers['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS'
+        response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization'
+        response.headers['Access-Control-Allow-Credentials'] = 'true'
+        return response
+
+    # Log the incoming request headers and data
+    logging.debug(f"Request headers: {request.headers}")
+    logging.debug(f"Request data: {request.get_json()}")
+
     try:
         data = request.get_json()
         
@@ -45,6 +52,7 @@ def register():
     
     except Exception as e:
         db.session.rollback()
+        logging.error(f"Exception: {e}")
         return jsonify({'error': str(e)}), 500
 
 @app.route('/api/login', methods=['POST'])

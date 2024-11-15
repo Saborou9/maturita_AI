@@ -32,7 +32,7 @@ const SignUp = () => {
 
     try {
       await register(formData);
-      navigate('/chat'); // Route to chat after successful registration
+      navigate('/chat');
     } catch (err) {
       setError(err.error || 'An error occurred during registration');
     }
