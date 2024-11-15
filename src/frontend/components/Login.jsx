@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { login } from '../services/api';
 import Navbar from './Navbar';
+import { AuthContext } from '../services/AuthContext.jsx';
 
 const Login = () => {
+  const {setUser} = useContext(AuthContext);
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -25,7 +27,8 @@ const Login = () => {
 
     try {
       await login(formData);
-      navigate('/chat'); // Route to chat after successful login
+      setUser(data.user);
+      navigate('/chat');
     } catch (err) {
       setError(err.error || 'An error occurred during login');
     }

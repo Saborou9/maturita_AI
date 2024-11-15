@@ -76,13 +76,20 @@ def login():
 @app.route('/api/user', methods=['GET'])
 @jwt_required()
 def get_user():
-    current_user_id = get_jwt_identity()
-    user = User.query.get(current_user_id)
-    return jsonify({
-        'id': user.id,
-        'email': user.email,
-        'fullName': user.full_name
-    })
+    try:
+        current_user_id = get_jwt_identity()
+        app.logger.debug(f"Current user ID: {current_user_id}")
+        user = User.query.get(current_user_id)
+        if not user:
+            return jsonify({'error': 'User not found'}), 404
+        return jsonify({
+            'id': user.id,
+            'email': user.email,
+            'fullName': user.full_name
+        })
+    except Exception as e:
+        app.logger.error(f"Error fetching user: {e}")
+        return jsonify({'error': 'Unauthorized'}), 401
 
 if __name__ == '__main__':
     with app.app_context():
