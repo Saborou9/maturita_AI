@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import sys
-from buddy.src.buddy.MarketAnalysisCrew import BuddyCrew
+from MarketAnalysis_crew.MarketAnalysisCrew import crew
 
 # This main file is intended to be a way for you to run your
 # crew locally, so refrain from adding unnecessary logic into this file.
@@ -14,7 +14,7 @@ def run():
     inputs = {
         'topic': 'AI LLMs'
     }
-    BuddyCrew().crew().kickoff(inputs=inputs)
+    crew().kickoff(inputs=inputs)
 
 
 def train():
@@ -25,7 +25,7 @@ def train():
         "topic": "AI LLMs"
     }
     try:
-        BuddyCrew().crew().train(n_iterations=int(sys.argv[1]), filename=sys.argv[2], inputs=inputs)
+        crew().train(n_iterations=int(sys.argv[1]), filename=sys.argv[2], inputs=inputs)
 
     except Exception as e:
         raise Exception(f"An error occurred while training the crew: {e}")
@@ -35,7 +35,7 @@ def replay():
     Replay the crew execution from a specific task.
     """
     try:
-        BuddyCrew().crew().replay(task_id=sys.argv[1])
+        crew().replay(task_id=sys.argv[1])
 
     except Exception as e:
         raise Exception(f"An error occurred while replaying the crew: {e}")
@@ -48,7 +48,7 @@ def test():
         "topic": "AI LLMs"
     }
     try:
-        BuddyCrew().crew().test(n_iterations=int(sys.argv[1]), openai_model_name=sys.argv[2], inputs=inputs)
+        crew().test(n_iterations=int(sys.argv[1]), openai_model_name=sys.argv[2], inputs=inputs)
 
     except Exception as e:
         raise Exception(f"An error occurred while replaying the crew: {e}")
