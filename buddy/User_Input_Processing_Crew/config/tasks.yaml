@@ -1,0 +1,57 @@
+intent_classification_task:
+  description: >
+    Classify the user query into predefined intents such as "marketing strategies," "sales improvement," "crypto trends," or "AI developments."
+
+    Objectives:
+    - Analyze the user query for keywords and context to determine the most relevant intent.
+    - Ensure accurate classification by cross-referencing with a predefined list of intents and their descriptions.
+    - Assign a confidence score to the classification to indicate the reliability of the result.
+    - Handle ambiguous queries by returning a "clarification needed" label and providing suggestions for refinement.
+
+  expected_output: >
+    - A single intent label (e.g., "crypto trends") that accurately describes the user's query.
+    - A confidence score (e.g., 95%) indicating the reliability of the classification.
+    - A markdown log entry with:
+      - The original user query.
+      - The classified intent.
+      - The confidence score and any additional notes (e.g., ambiguity detected).
+
+entity_extraction_task:
+  description: >
+    Extract key entities from the user query, including names, keywords, and metrics relevant to the identified intent.
+
+    Objectives:
+    - Identify and extract all critical entities such as company names, product names, and numeric values.
+    - Annotate extracted entities with their respective roles or categories (e.g., Company Name, Metric).
+    - Handle edge cases like ambiguous or missing entities by flagging them for clarification.
+    - Ensure extracted entities align with the identified intent for consistency.
+
+  expected_output: >
+    - A structured list of extracted entities, formatted in markdown (e.g., - Company Name: ExampleCorp).
+    - Annotations for each entity (e.g., - Metric: Monthly Revenue = $10,000).
+    - A markdown log entry including:
+      - The original query.
+      - The list of extracted entities with annotations.
+      - Notes on flagged entities or ambiguities.
+
+context_management_task:
+  description: >
+    Maintain a context log for multi-turn conversations, ensuring responses remain relevant and logically connected.
+
+    Objectives:
+    - Update the context log after each user interaction with:
+      - The user's query.
+      - Derived intent and extracted entities.
+      - The chatbot's response.
+    - Use the context log to ensure continuity in multi-turn conversations.
+    - Handle context conflicts (e.g., user changes topic mid-conversation) by resetting or adjusting the context appropriately.
+    - Optimize the context log by removing redundant or outdated entries to maintain efficiency.
+
+  expected_output: >
+    - A markdown-formatted context log that includes:
+      - User's query.
+      - Derived intent and extracted entities.
+      - Chatbot's response.
+      - Updated context for subsequent queries.
+    - A summary of any adjustments made to the context (e.g., context reset due to topic change).
+    - Notes on potential improvements for managing context in future interactions.

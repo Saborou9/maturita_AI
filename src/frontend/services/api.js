@@ -20,7 +20,9 @@ api.interceptors.request.use((config) => {
 
 export const register = async (userData) => {
   try {
-    const response = await api.post('/register', userData); // Calls /api/register
+    console.log("Starting register API call...");
+    const response = await api.post('/register', userData);
+    console.log("API Response:", response);
     return response.data;
   } catch (error) {
     throw error.response.data;

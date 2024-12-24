@@ -5,10 +5,10 @@ import Navbar from './Navbar';
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
+    fullName: '',
     email: '',
     password: '',
     confirmPassword: '',
-    fullName: ''
   });
 
   const handleChange = (e) => {
@@ -23,20 +23,33 @@ const SignUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
-
+    setError(''); // Clear any previous error
+  
     if (formData.password !== formData.confirmPassword) {
       setError('Passwords do not match');
       return;
     }
-
+  
+    // Validate form fields
+    if (!formData.fullName.trim() || !formData.email.trim() || !formData.password.trim()) {
+      setError('Please fill in all fields');
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      setError('Please enter a valid email');
+      return;
+    }
+  
     try {
+      console.log("Submitting registration form:", formData);
       await register(formData);
+      console.log("Registration successful!");
       navigate('/chat');
     } catch (err) {
-      setError(err.error || 'An error occurred during registration');
+      console.error("Registration error:", err);
+      setError(err?.response?.data?.error || 'An error occurred during registration');
     }
-  };
+  };  
 
   return (
     <>

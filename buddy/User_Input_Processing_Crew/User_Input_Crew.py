@@ -1,16 +1,20 @@
-from crewai import Agent, Crew, Process, Task
+from crewai import Agent, Crew, Process, Task, LLM
 from crewai.project import CrewBase, agent, crew, task
 from crewai_tools import SerperDevTool
 
 @CrewBase
-class MarketAnalysisCrew():
-    """Market Analysis Crew"""
+class UserInputCrew():
+    """User Input Crew"""
 
     @agent
     def trend_researcher(self) -> Agent:
         return Agent(
             config=self.agents_config['trend_researcher'],
             tools=[SerperDevTool()],
+            llm=LLM(
+                model="",
+                max_tokens=3000
+            ),
             verbose=True
         )
 
@@ -48,7 +52,7 @@ class MarketAnalysisCrew():
 
     @crew
     def crew(self) -> Crew:
-        """Creates the Market Analysis Crew"""
+        """Creates the User Input Crew"""
         return Crew(
             agents=self.agents,  # Automatically created by the @agent decorator
             tasks=self.tasks,  # Automatically created by the @task decorator
