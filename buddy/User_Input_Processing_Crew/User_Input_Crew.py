@@ -1,16 +1,14 @@
 from crewai import Agent, Crew, Process, Task, LLM
 from crewai.project import CrewBase, agent, crew, task
-from crewai_tools import SerperDevTool
 
 @CrewBase
 class UserInputCrew():
     """User Input Crew"""
 
     @agent
-    def trend_researcher(self) -> Agent:
+    def intent_detector(self) -> Agent:
         return Agent(
-            config=self.agents_config['trend_researcher'],
-            tools=[SerperDevTool()],
+            config=self.agents_config['intent_detector'],
             llm=LLM(
                 model="",
                 max_tokens=3000
@@ -18,36 +16,37 @@ class UserInputCrew():
             verbose=True
         )
 
+    @task
+    def intent_classification_task(self) -> Task:
+        return Task(
+            config=self.tasks_config['intent_classification_task'],
+            agents=self.intent_detector()
+        )
+    
     @agent
-    def competitor_analyst(self) -> Agent:
+    def entity_extractor(self) -> Agent:
         return Agent(
-            config=self.agents_config['competitor_analyst'],
+            config=self.agents_config['entity_extractor'],
+            verbose=True
+        )
+    
+    @task
+    def entity_extraction_task(self) -> Task:
+        return Task(
+            config=self.tasks_config['entity_extraction_task']
+        )
+
+    @agent
+    def context_manager(self) -> Agent:
+        return Agent(
+            config=self.agents_config['context_manager'],
             verbose=True
         )
 
-    @agent
-    def audience_insights_specialist(self) -> Agent:
-        return Agent(
-            config=self.agents_config['audience_insights_specialist'],
-            verbose=True
-        )
-
     @task
-    def trend_analysis_task(self) -> Task:
+    def context_management_task(self) -> Task:
         return Task(
-            config=self.tasks_config['trend_analysis_task']
-        )
-
-    @task
-    def competitor_analysis_task(self) -> Task:
-        return Task(
-            config=self.tasks_config['competitor_analysis_task']
-        )
-
-    @task
-    def audience_insights_task(self) -> Task:
-        return Task(
-            config=self.tasks_config['audience_insights_task']
+            config=self.tasks_config['context_management_task']
         )
 
     @crew
@@ -58,4 +57,5 @@ class UserInputCrew():
             tasks=self.tasks,  # Automatically created by the @task decorator
             process=Process.sequential,
             verbose=True,
+            memory=True
         )

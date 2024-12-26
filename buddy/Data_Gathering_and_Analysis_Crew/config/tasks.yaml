@@ -1,0 +1,61 @@
+market_trend_analysis_task:
+  description: >
+    Conduct a comprehensive analysis of current market trends to identify opportunities 
+    and challenges relevant to the user's query.
+
+    Objectives:
+    - Gather and synthesize data from reliable sources.
+    - Highlight the top 5 market trends with potential business impact.
+    - Provide actionable recommendations based on the identified trends.
+
+  expected_output: >
+    A markdown report containing:
+    - A list of the top 5 market trends with concise summaries.
+    - Recommendations for leveraging or mitigating each trend.
+    - Data sources and references used for the analysis.
+
+competitor_swot_analysis_task:
+  description: >
+    Perform a SWOT (Strengths, Weaknesses, Opportunities, Threats) analysis of competitors 
+    in the market relevant to the user's business or query.
+
+    Objectives:
+    - Identify key competitors and their market positioning.
+    - Evaluate their strategies, strengths, weaknesses, and potential opportunities or threats.
+    - Provide strategic recommendations for the user to gain a competitive advantage.
+
+  expected_output: >
+    A markdown report including:
+    - A SWOT analysis table for each competitor.
+    - Key insights and actionable recommendations.
+    - Data sources and references used for the analysis.
+
+audience_segmentation_task:
+  description: >
+    Analyze audience demographics, preferences, and behaviors to identify potential new markets or customer segments.
+
+    Objectives:
+    - Segment the audience into distinct groups based on demographics and behavior.
+    - Highlight the top 3 untapped audience segments with growth potential.
+    - Provide actionable strategies for reaching each segment.
+
+  expected_output: >
+    A markdown report containing:
+    - Audience segmentation results with detailed profiles.
+    - A list of the top 3 untapped segments and their growth potential.
+    - Strategies for engaging each segment effectively.
+
+opportunity_gap_analysis_task:
+  description: >
+    Identify gaps in the market that represent opportunities for business expansion or innovation.
+
+    Objectives:
+    - Evaluate current market offerings and identify unmet needs or underserved demographics.
+    - Highlight the top 3 market gaps with actionable recommendations.
+    - Provide insights into how these gaps can be addressed effectively.
+
+  expected_output: >
+    A markdown report with:
+    - A list of the top 3 market gaps and their potential value.
+    - Recommendations for capitalizing on each gap.
+    - Supporting data and sources for validation.
