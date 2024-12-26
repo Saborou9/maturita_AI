@@ -2,7 +2,7 @@ from crewai import Agent, Crew, Process, Task, LLM
 from crewai.project import CrewBase, agent, crew, task
 
 @CrewBase
-class Data_Analysis_crew():
+class Strategy_crew():
 
   @agent 
   def sales_strategy_agent(self) -> Agent:
@@ -75,3 +75,14 @@ class Data_Analysis_crew():
         config=self.tasks_config['risk_identification_task'],
         agents=self.risk_assessment_agent()
     )
+  
+  @crew
+  def crew(self) -> Crew:
+      """Creates the Strategy recommandation Crew"""
+      return Crew(
+          agents=self.agents,  # Automatically created by the @agent decorator
+          tasks=self.tasks,  # Automatically created by the @task decorator
+          process=Process.sequential,
+          verbose=True,
+          memory=True
+      )

@@ -1,0 +1,74 @@
+fact_checking_task:
+  description: >
+    Verify the factual accuracy of all responses provided by the chatbot, ensuring that all data, insights, and recommendations are based on credible sources.
+
+    Objectives:
+    - Cross-check facts and figures against trusted, up-to-date sources.
+    - Flag and correct any inaccuracies or inconsistencies.
+    - Ensure all sources used are clearly documented.
+
+  expected_output: >
+    A markdown report including:
+    - Verified facts and figures.
+    - Any corrections made to inaccurate responses.
+    - A list of sources used for verification.
+
+consistency_review_task:
+  description: >
+    Evaluate the logical consistency and coherence of chatbot responses across multi-turn conversations.
+
+    Objectives:
+    - Ensure that responses align with the context and flow of the conversation.
+    - Identify and resolve any contradictions or ambiguities in the chatbot’s outputs.
+    - Verify that follow-up responses accurately reference prior context.
+
+  expected_output: >
+    A markdown log containing:
+    - Identified inconsistencies or ambiguities.
+    - Changes made to improve coherence and logical flow.
+    - A summary of the overall consistency of the conversation.
+
+accuracy_validation_task:
+  description: >
+    Validate the accuracy of numerical data, statistics, and metrics provided in chatbot responses.
+
+    Objectives:
+    - Cross-check all numerical outputs against reliable data sources.
+    - Ensure that statistics and metrics are both relevant and error-free.
+    - Document any corrections or adjustments made to numerical data.
+
+  expected_output: >
+    A markdown report with:
+    - Verified numerical data and statistics.
+    - Any corrections or updates made to inaccuracies.
+    - Sources used for validation.
+
+source_quality_review_task:
+  description: >
+    Assess the quality and reliability of the sources used to generate chatbot responses.
+
+    Objectives:
+    - Evaluate the credibility and relevance of sources.
+    - Flag and exclude sources that are outdated, biased, or unreliable.
+    - Ensure that all referenced sources meet a high standard of accuracy.
+
+  expected_output: >
+    A markdown report with:
+    - A list of reviewed sources, including their credibility ratings.
+    - Exclusions of any unreliable or outdated sources.
+    - Recommendations for alternative high-quality sources.
+
+conversation_quality_assurance_task:
+  description: >
+    Conduct a comprehensive review of the entire conversation to ensure overall quality, accuracy, and consistency.
+
+    Objectives:
+    - Review all aspects of the conversation, including factual accuracy, logical coherence, and numerical data.
+    - Provide a summary of strengths and areas for improvement.
+    - Ensure that all responses meet the chatbot’s quality standards.
+
+  expected_output: >
+    A markdown summary including:
+    - An overview of the conversation’s quality.
+    - Identified strengths and weaknesses.
+    - Recommendations for improvement in future interactions.

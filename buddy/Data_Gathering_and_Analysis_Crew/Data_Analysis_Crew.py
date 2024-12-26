@@ -64,3 +64,14 @@ class Data_Analysis_crew():
         config=self.tasks_config['opportunity_gap_analysis_task'],
         agents=self.market_research_agent()
     )
+  
+  @crew
+  def crew(self) -> Crew:
+      """Creates the Data Analysis Crew"""
+      return Crew(
+          agents=self.agents,  # Automatically created by the @agent decorator
+          tasks=self.tasks,  # Automatically created by the @task decorator
+          process=Process.sequential,
+          verbose=True,
+          memory=True
+      )
