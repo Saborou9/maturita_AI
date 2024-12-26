@@ -10,7 +10,7 @@ class User_Input_Crew():
         return Agent(
             config=self.agents_config['intent_detector'],
             llm=LLM(
-                model="",
+                model="gpt-4o-mini-2024-07-18",
                 max_tokens=3000
             ),
             verbose=True

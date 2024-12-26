@@ -1,5 +1,7 @@
 from crewai import Agent, Crew, Process, Task, LLM
 from crewai.project import CrewBase, agent, crew, task
+from tools.serper_tool import SerperTool
+from crewai_tools.tools import WebsiteSearchTool
 
 @CrewBase
 class Data_Analysis_crew():

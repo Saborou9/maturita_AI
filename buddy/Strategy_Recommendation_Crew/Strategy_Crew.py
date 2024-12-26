@@ -27,7 +27,7 @@ class Strategy_crew():
     return Agent(
       config=self.agents_config['marketing_strategy_agent'],
       llm=LLM(
-        model="",
+        model="anthropic/claude-3-5-haiku-20241022",
         max_tokens=6900
       ),
       verbose=True
