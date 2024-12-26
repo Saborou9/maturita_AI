@@ -66,7 +66,7 @@ class Data_Analysis_crew():
     )
   
   @crew
-  def crew(self) -> Crew:
+  def Data_analysis_crew(self) -> Crew:
       """Creates the Data Analysis Crew"""
       return Crew(
           agents=self.agents,  # Automatically created by the @agent decorator

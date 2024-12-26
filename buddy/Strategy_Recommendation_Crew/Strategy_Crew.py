@@ -77,7 +77,7 @@ class Strategy_crew():
     )
   
   @crew
-  def crew(self) -> Crew:
+  def Strategy_crew(self) -> Crew:
       """Creates the Strategy recommandation Crew"""
       return Crew(
           agents=self.agents,  # Automatically created by the @agent decorator

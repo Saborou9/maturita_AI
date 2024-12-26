@@ -73,7 +73,7 @@ class Fact_check_crew():
     )
   
   @crew
-  def crew(self) -> Crew:
+  def Fact_check_crew(self) -> Crew:
       """Creates the Fact Check Crew"""
       return Crew(
           agents=self.agents,  # Automatically created by the @agent decorator

@@ -2,7 +2,7 @@ from crewai import Agent, Crew, Process, Task, LLM
 from crewai.project import CrewBase, agent, crew, task
 
 @CrewBase
-class UserInputCrew():
+class User_Input_Crew():
     """User Input Crew"""
 
     @agent
@@ -50,7 +50,7 @@ class UserInputCrew():
         )
 
     @crew
-    def crew(self) -> Crew:
+    def User_input_crew(self) -> Crew:
         """Creates the User Input Crew"""
         return Crew(
             agents=self.agents,  # Automatically created by the @agent decorator
