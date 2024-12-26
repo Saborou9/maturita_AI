@@ -1,0 +1,60 @@
+sales_pipeline_optimization_task:
+  description: >
+    Analyze the current sales pipeline and identify areas for improvement. 
+    Develop strategies to optimize lead conversion, improve retention, and maximize revenue.
+
+    Objectives:
+    - Evaluate the effectiveness of the current sales pipeline.
+    - Identify bottlenecks or inefficiencies in lead conversion and nurturing.
+    - Provide actionable recommendations for improvement.
+
+  expected_output: >
+    A markdown report containing:
+    - Analysis of the current sales pipeline.
+    - Identified bottlenecks or inefficiencies.
+    - Detailed recommendations for optimization, including expected outcomes.
+
+marketing_campaign_design_task:
+  description: >
+    Develop a marketing campaign tailored to the user's goals, target audience, and market trends.
+
+    Objectives:
+    - Analyze the user's target audience and their preferences.
+    - Create a campaign strategy including goals, key messages, channels, and timelines.
+    - Provide suggestions for measuring campaign success.
+
+  expected_output: >
+    A markdown report including:
+    - Campaign strategy overview (goals, audience, key messages).
+    - Recommended marketing channels and content ideas.
+    - KPIs for tracking and evaluating campaign performance.
+
+process_improvement_task:
+  description: >
+    Evaluate the user's operational processes and provide recommendations to improve efficiency and reduce costs.
+
+    Objectives:
+    - Analyze the current operational workflow for inefficiencies.
+    - Identify opportunities for automation or resource reallocation.
+    - Suggest scalable solutions to enhance productivity and reduce expenses.
+
+  expected_output: >
+    A markdown report with:
+    - Analysis of the current workflow.
+    - Identified inefficiencies or cost-saving opportunities.
+    - Actionable recommendations for process improvement and scalability.
+
+risk_identification_task:
+  description: >
+    Identify potential risks in the user's operations, market, or strategy and suggest actionable mitigation plans.
+
+    Objectives:
+    - Evaluate the user's current strategy or operations for potential vulnerabilities.
+    - Highlight the top 3 risks with the highest impact or likelihood.
+    - Develop mitigation plans tailored to each identified risk.
+
+  expected_output: >
+    A markdown report including:
+    - A list of the top 3 identified risks and their potential impact.
+    - Detailed mitigation strategies for each risk.
+    - Suggestions for monitoring and addressing future risks.
