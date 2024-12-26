@@ -4,6 +4,7 @@ from flask_jwt_extended import JWTManager, create_access_token, jwt_required, ge
 from models import db, User
 from config import Config
 import logging
+from buddy import main
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -90,6 +91,27 @@ def get_user():
     except Exception as e:
         app.logger.error(f"Error fetching user: {e}")
         return jsonify({'error': 'Unauthorized'}), 401
+    
+@app.route('/api/chat', methods=['POST'])
+def chat():
+    try:
+        # Get the user question from the request
+        data = request.get_json()
+        question = data.get('message', '')
+
+        if not question:
+            return jsonify({'error': 'Message is required'}), 400
+
+        # Start the ChatbotFlow with the user's question
+        chatbot_flow = main.ChatbotFlow()
+        final_response = chatbot_flow.kickoff(inputs={"topic": question})
+
+        # Return the response to the frontend
+        return jsonify({'response': final_response}), 200
+
+    except Exception as e:
+        logging.error(f"Error in chat endpoint: {e}")
+        return jsonify({'error': 'Something went wrong'}), 500
 
 if __name__ == '__main__':
     with app.app_context():
