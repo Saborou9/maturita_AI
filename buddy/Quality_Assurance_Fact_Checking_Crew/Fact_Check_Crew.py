@@ -11,7 +11,7 @@ class Fact_check_crew():
     return Agent(
       config=self.agents_config['content_validation_agent'],
       llm=LLM(
-        model="",
+        model="anthropic/claude-3-5-haiku-20241022",
         max_tokens=6900
       ),
       verbose=True
@@ -29,7 +29,7 @@ class Fact_check_crew():
     return Agent(
       config=self.agents_config['consistency_review_agent'],
       llm=LLM(
-        model="",
+        model="gpt-4o-mini-2024-07-18",
         max_tokens=6900
       ),
       verbose=True
@@ -47,7 +47,7 @@ class Fact_check_crew():
     return Agent(
       config=self.agents_config['accuracy_assessment_agent'],
       llm=LLM(
-        model="",
+        model="anthropic/claude-3-5-haiku-20241022",
         max_tokens=6900
       ),
       verbose=True
