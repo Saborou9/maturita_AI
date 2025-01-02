@@ -9,7 +9,7 @@ class Strategy_crew():
     return Agent(
       config=self.agents_config['sales_strategy_agent'],
       llm=LLM(
-        model="",
+        model="gpt-4o-mini-2024-07-18",
         max_tokens=6900
       ),
       verbose=True
@@ -27,7 +27,7 @@ class Strategy_crew():
     return Agent(
       config=self.agents_config['marketing_strategy_agent'],
       llm=LLM(
-        model="anthropic/claude-3-5-haiku-20241022",
+        model="gpt-4o-mini-2024-07-18",
         max_tokens=6900
       ),
       verbose=True
@@ -45,7 +45,7 @@ class Strategy_crew():
     return Agent(
       config=self.agents_config['operational_efficiency_agent'],
       llm=LLM(
-        model="",
+        model="anthropic/claude-3-5-haiku-20241022",
         max_tokens=6900
       ),
       verbose=True
@@ -63,7 +63,7 @@ class Strategy_crew():
     return Agent(
       config=self.agents_config['risk_assessment_agent'],
       llm=LLM(
-        model="",
+        model="anthropic/claude-3-5-haiku-20241022",
         max_tokens=6900
       ),
       verbose=True
