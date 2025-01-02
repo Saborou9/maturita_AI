@@ -138,9 +138,9 @@ def chat():
 
     except Exception as e:
         logging.error(f"Error in chat endpoint: {str(e)}", exc_info=True)
-        return jsonify({'error': 'Something went wrong. Please try again later.'}),             return jsonify({'error': 'Something went wrong. Please try again later.'}), 500
+        return jsonify({'error': 'Something went wrong. Please try again later.'}), 500
 
-        return jsonify({'error': 'Something went wrong. Please try again later.'}), if __name__ == '__main__':
-        return jsonify({'error': 'Something went wrong. Please try again later.'}),     with app.app_context():
-        return jsonify({'error': 'Something went wrong. Please try again later.'}),         db.create_all()
-        return jsonify({'error': 'Something went wrong. Please try again later.'}),     app.run(debug=True)
+if __name__ == '__main__':
+    with app.app_context():
+        db.create_all()
+    app.run(debug=True)
