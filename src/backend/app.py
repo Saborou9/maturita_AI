@@ -15,7 +15,7 @@ CORS(app, resources={
         "origins": "http://localhost:5173",
         "methods": ["GET", "POST", "OPTIONS", "PUT", "DELETE"],
         "allow_headers": ["Content-Type", "Authorization", "X-Requested-With"],
-        "expose_headers": ["Content-Type", "Authorization"],
+        "expose_headers": ["Content-Type", "Authorization", "Origin"],
         "supports_credentials": True,
         "max_age": 600
     }
@@ -29,7 +29,7 @@ def register():
         response = make_response('', 204)
         response.headers['Access-Control-Allow-Origin'] = 'http://localhost:5173'
         response.headers['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS'
-        response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization'
+        response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization', 'Origin'
         response.headers['Access-Control-Allow-Credentials'] = 'true'
         return response
 
@@ -112,7 +112,7 @@ def chat():
         response = make_response('', 204)
         response.headers['Access-Control-Allow-Origin'] = 'http://localhost:5173'
         response.headers['Access-Control-Allow-Methods'] = 'POST, OPTIONS'
-        response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization, X-Requested-With'
+        response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization, X-Requested-With', 'Origin'
         response.headers['Access-Control-Allow-Credentials'] = 'true'
         response.headers['Access-Control-Max-Age'] = '600'
         return response
