@@ -11,7 +11,7 @@ class User_Input_Crew():
             config=self.agents_config['intent_detector'],
             llm=LLM(
                 model="gpt-4o-mini-2024-07-18",
-                max_tokens=3000
+                max_tokens=6000
             ),
             verbose=True
         )
@@ -27,6 +27,10 @@ class User_Input_Crew():
     def entity_extractor(self) -> Agent:
         return Agent(
             config=self.agents_config['entity_extractor'],
+            llm=LLM(
+                model="anthropic/claude-3-5-haiku-20241022",
+                max_tokens=6000
+            ),
             verbose=True
         )
     
@@ -40,6 +44,10 @@ class User_Input_Crew():
     def context_manager(self) -> Agent:
         return Agent(
             config=self.agents_config['context_manager'],
+            llm=LLM(
+                model="gpt-4o-mini-2024-07-18",
+                max_tokens=8000
+            ),
             verbose=True
         )
 
