@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Navbar from './Navbar';
-import ChatbotFlow from '../../main/ChatbotFlow';
+import { fetchBotResponse } from '../services/chat_logic';
 
 const Chat = () => {
   const [messages, setMessages] = useState([
@@ -44,19 +44,16 @@ const Chat = () => {
       };
       setMessages((prev) => [...prev, processingMessage]);
 
-      // Process message directly
-      const chatbotFlow = new ChatbotFlow();
-      const response = await chatbotFlow.kickoff({ topic: inputMessage });
+      // Fetch bot response from the backend
+      const botResponseText = await fetchBotResponse(inputMessage);
 
-      // Replace processing message with actual response
-      setMessages(prev => [
-        ...prev.slice(0, -1), // Remove processing message
-        {
-          id: prev.length + 2,
-          text: response,
-          isBot: true
-        }
-      ]);
+      // Add bot response to messages
+      const botResponse = {
+        id: messages.length + 2,
+        text: botResponseText,
+        isBot: true
+      };
+      setMessages((prev) => [...prev, botResponse]);
     } catch (error) {
       // Show error message
       setMessages(prev => [
