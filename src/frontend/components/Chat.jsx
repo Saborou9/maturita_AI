@@ -34,13 +34,52 @@ const Chat = () => {
     setMessages([...messages, newMessage]);
     setInputMessage('');
 
-    // Simulate bot response
-    const botResponse = {
-      id: messages.length + 2,
-      text: "I'm processing your message...", // Placeholder response
-      isBot: true
-    };
-    setMessages((prev) => [...prev, botResponse]);
+    try {
+      // Show processing message
+      const processingMessage = {
+        id: messages.length + 2,
+        text: "Processing your message...",
+        isBot: true
+      };
+      setMessages((prev) => [...prev, processingMessage]);
+
+      // Call the backend
+      const response = await fetch('http://localhost:5000/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message: inputMessage }),
+        credentials: 'include'
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to get response');
+      }
+
+      const data = await response.json();
+
+      // Replace processing message with actual response
+      setMessages(prev => [
+        ...prev.slice(0, -1), // Remove processing message
+        {
+          id: prev.length + 2,
+          text: data.response,
+          isBot: true
+        }
+      ]);
+    } catch (error) {
+      // Show error message
+      setMessages(prev => [
+        ...prev.slice(0, -1), // Remove processing message
+        {
+          id: prev.length + 2,
+          text: "Sorry, I couldn't process your message. Please try again.",
+          isBot: true
+        }
+      ]);
+      console.error('Error:', error);
+    }
   };
 
   return (

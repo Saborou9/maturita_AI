@@ -104,3 +104,34 @@ if __name__ == '__main__':
     with app.app_context():
         db.create_all()
     app.run(debug=True)
+@app.route('/api/chat', methods=['OPTIONS', 'POST'])
+def chat():
+    if request.method == 'OPTIONS':
+        response = make_response('', 204)
+        response.headers['Access-Control-Allow-Origin'] = 'http://localhost:5173'
+        response.headers['Access-Control-Allow-Methods'] = 'POST, OPTIONS'
+        response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization'
+        response.headers['Access-Control-Allow-Credentials'] = 'true'
+        return response
+    try:
+        # Get the user question from the request
+        data = request.get_json()
+        question = data.get('message', '')
+
+        if not question:
+            return jsonify({'error': 'Message is required'}), 400
+
+        logging.info(f"Received chat request with message: {question}")
+
+        # Start the ChatbotFlow with the user's question
+        chatbot_flow = ChatbotFlow()
+        final_response = chatbot_flow.kickoff(inputs={"topic": question})
+
+        logging.info(f"Generated response: {final_response}")
+
+        # Return the response to the frontend
+        return jsonify({'response': final_response}), 200
+
+    except Exception as e:
+        logging.error(f"Error in chat endpoint: {str(e)}", exc_info=True)
+        return jsonify({'error': 'Something went wrong. Please try again later.'}), 500
