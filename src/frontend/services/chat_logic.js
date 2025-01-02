@@ -7,7 +7,8 @@ export const fetchBotResponse = async (message) => {
         'X-Requested-With': 'XMLHttpRequest'
       },
       body: JSON.stringify({ message }),
-      credentials: 'include'
+      credentials: 'include',
+      mode: 'cors'
     });
 
     if (!response.ok) {
