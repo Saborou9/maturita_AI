@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Navbar from './Navbar';
-import { ChatbotFlow } from '../../buddy/main';
+import ChatbotFlow from '../../main/ChatbotFlow';
 
 const Chat = () => {
   const [messages, setMessages] = useState([
