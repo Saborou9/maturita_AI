@@ -10,16 +10,7 @@ app = Flask(__name__)
 app.config.from_object(Config)
 db.init_app(app)
 jwt = JWTManager(app)
-CORS(app, resources={
-    r"/api/*": {
-        "origins": "http://localhost:5173",
-        "methods": ["GET", "POST", "OPTIONS", "PUT", "DELETE"],
-        "allow_headers": ["Content-Type", "Authorization", "X-Requested-With"],
-        "expose_headers": ["Content-Type", "Authorization", "Origin"],
-        "supports_credentials": True,
-        "max_age": 600
-    }
-})
+CORS(app)
 
 logging.basicConfig(level=logging.DEBUG)
 
