@@ -102,16 +102,20 @@ def chat():
         if not question:
             return jsonify({'error': 'Message is required'}), 400
 
+        logging.info(f"Received chat request with message: {question}")
+
         # Start the ChatbotFlow with the user's question
         chatbot_flow = ChatbotFlow()
         final_response = chatbot_flow.kickoff(inputs={"topic": question})
+
+        logging.info(f"Generated response: {final_response}")
 
         # Return the response to the frontend
         return jsonify({'response': final_response}), 200
 
     except Exception as e:
-        logging.error(f"Error in chat endpoint: {e}")
-        return jsonify({'error': 'Something went wrong'}), 500
+        logging.error(f"Error in chat endpoint: {str(e)}", exc_info=True)
+        return jsonify({'error': 'Something went wrong. Please try again later.'}), 500
 
 if __name__ == '__main__':
     with app.app_context():

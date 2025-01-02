@@ -16,7 +16,7 @@ class ChatbotFlow(Flow):
     def user_input_processing(self):
         print("Starting the flow with User Input Processing Crew")
 
-        inputs = {"topic": "AI LLMs"}  # Example input
+        inputs = {"topic": self.inputs.get("topic", "")}  # Use the actual user input
         user_input_crew = User_Input_Crew()
         response = user_input_crew.kickoff(inputs=inputs)
 
