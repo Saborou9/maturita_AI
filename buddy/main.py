@@ -15,13 +15,26 @@ class ChatbotFlow(Flow):
     @start()
     def user_input_processing(self):
         print("Starting the flow with User Input Processing Crew")
-
-        inputs = {"topic": self.inputs.get("topic", "")}  # Use the actual user input
-        user_input_crew = User_Input_Crew()
-        response = user_input_crew.kickoff(inputs=inputs)
-
-        print(f"User Input Processing Results: {response}")
-        return response
+        
+        try:
+            if not self.inputs or 'topic' not in self.inputs:
+                raise ValueError("Missing 'topic' in inputs")
+                
+            inputs = {"topic": self.inputs['topic']}
+            print(f"Processing input: {inputs}")
+            
+            user_input_crew = User_Input_Crew()
+            response = user_input_crew.kickoff(inputs=inputs)
+            
+            if not response:
+                raise ValueError("Empty response from User Input Processing Crew")
+                
+            print(f"User Input Processing Results: {response}")
+            return response
+            
+        except Exception as e:
+            print(f"Error in user_input_processing: {str(e)}")
+            raise
 
     @listen(user_input_processing)
     def data_gathering_and_analysis(self, user_input_results):

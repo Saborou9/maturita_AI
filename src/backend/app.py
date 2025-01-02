@@ -113,24 +113,38 @@ def chat():
         response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization'
         response.headers['Access-Control-Allow-Credentials'] = 'true'
         return response
+    
     try:
         # Get the user question from the request
         data = request.get_json()
+        if not data:
+            logging.error("No JSON data received in request")
+            return jsonify({'error': 'No data received'}), 400
+            
         question = data.get('message', '')
-
         if not question:
+            logging.error("Empty message received")
             return jsonify({'error': 'Message is required'}), 400
 
         logging.info(f"Received chat request with message: {question}")
 
         # Start the ChatbotFlow with the user's question
-        chatbot_flow = ChatbotFlow()
-        final_response = chatbot_flow.kickoff(inputs={"topic": question})
+        try:
+            chatbot_flow = ChatbotFlow()
+            logging.info("ChatbotFlow initialized successfully")
+            
+            final_response = chatbot_flow.kickoff(inputs={"topic": question})
+            logging.info(f"Generated response: {final_response}")
 
-        logging.info(f"Generated response: {final_response}")
+            if not final_response:
+                logging.error("Empty response from ChatbotFlow")
+                return jsonify({'error': 'Empty response from chatbot'}), 500
 
-        # Return the response to the frontend
-        return jsonify({'response': final_response}), 200
+            return jsonify({'response': final_response}), 200
+
+        except Exception as flow_error:
+            logging.error(f"Error in ChatbotFlow: {str(flow_error)}", exc_info=True)
+            return jsonify({'error': 'Error processing your message'}), 500
 
     except Exception as e:
         logging.error(f"Error in chat endpoint: {str(e)}", exc_info=True)
