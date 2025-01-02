@@ -4,7 +4,7 @@ from flask_jwt_extended import JWTManager, create_access_token, jwt_required, ge
 from models import db, User
 from config import Config
 import logging
-from buddy import main
+from buddy.main import ChatbotFlow
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -103,7 +103,7 @@ def chat():
             return jsonify({'error': 'Message is required'}), 400
 
         # Start the ChatbotFlow with the user's question
-        chatbot_flow = main.ChatbotFlow()
+        chatbot_flow = ChatbotFlow()
         final_response = chatbot_flow.kickoff(inputs={"topic": question})
 
         # Return the response to the frontend
