@@ -4,6 +4,7 @@ export const fetchBotResponse = async (message) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest'
       },
       body: JSON.stringify({ message }),
       credentials: 'include'
