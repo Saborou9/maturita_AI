@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Navbar from './Navbar';
-import { fetchBotResponse } from '../services/chat_logic';
 
 const Chat = () => {
   const [messages, setMessages] = useState([
@@ -35,13 +34,10 @@ const Chat = () => {
     setMessages([...messages, newMessage]);
     setInputMessage('');
 
-    // Fetch bot response from the backend
-    const botResponseText = await fetchBotResponse(inputMessage);
-
-    // Add bot response to messages
+    // Simulate bot response
     const botResponse = {
       id: messages.length + 2,
-      text: botResponseText,
+      text: "I'm processing your message...", // Placeholder response
       isBot: true
     };
     setMessages((prev) => [...prev, botResponse]);
