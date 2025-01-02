@@ -10,7 +10,14 @@ app = Flask(__name__)
 app.config.from_object(Config)
 db.init_app(app)
 jwt = JWTManager(app)
-CORS(app, resources={r"/*": {"origins": "http://localhost:5173"}}, supports_credentials=True)
+CORS(app, resources={
+    r"/api/*": {
+        "origins": "http://localhost:5173",
+        "methods": ["GET", "POST", "OPTIONS"],
+        "allow_headers": ["Content-Type", "Authorization"],
+        "supports_credentials": True
+    }
+})
 
 logging.basicConfig(level=logging.DEBUG)
 
@@ -92,8 +99,15 @@ def get_user():
         app.logger.error(f"Error fetching user: {e}")
         return jsonify({'error': 'Unauthorized'}), 401
     
-@app.route('/api/chat', methods=['POST'])
+@app.route('/api/chat', methods=['OPTIONS', 'POST'])
 def chat():
+    if request.method == 'OPTIONS':
+        response = make_response('', 204)
+        response.headers['Access-Control-Allow-Origin'] = 'http://localhost:5173'
+        response.headers['Access-Control-Allow-Methods'] = 'POST, OPTIONS'
+        response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization'
+        response.headers['Access-Control-Allow-Credentials'] = 'true'
+        return response
     try:
         # Get the user question from the request
         data = request.get_json()
