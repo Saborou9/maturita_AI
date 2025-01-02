@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Navbar from './Navbar';
+import { ChatbotFlow } from '../../buddy/main';
 
 const Chat = () => {
   const [messages, setMessages] = useState([
@@ -43,28 +44,16 @@ const Chat = () => {
       };
       setMessages((prev) => [...prev, processingMessage]);
 
-      // Call the backend
-      const response = await fetch('http://localhost:5000/api/chat', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ message: inputMessage }),
-        credentials: 'include'
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to get response');
-      }
-
-      const data = await response.json();
+      // Process message directly
+      const chatbotFlow = new ChatbotFlow();
+      const response = await chatbotFlow.kickoff({ topic: inputMessage });
 
       // Replace processing message with actual response
       setMessages(prev => [
         ...prev.slice(0, -1), // Remove processing message
         {
           id: prev.length + 2,
-          text: data.response,
+          text: response,
           isBot: true
         }
       ]);
