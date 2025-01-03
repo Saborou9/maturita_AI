@@ -39,21 +39,33 @@ const Chat = () => {
       // Show processing message
       const processingMessage = {
         id: messages.length + 2,
-        text: "Processing your message...",
+        text: "Analyzing your message... This might take a moment.",
         isBot: true
       };
       setMessages((prev) => [...prev, processingMessage]);
 
-      // Fetch bot response from the backend
-      const botResponseText = await fetchBotResponse(inputMessage);
+      try {
+        // Fetch bot response from the backend
+        const botResponseText = await fetchBotResponse(inputMessage);
 
-      // Add bot response to messages
-      const botResponse = {
-        id: messages.length + 2,
-        text: botResponseText,
-        isBot: true
-      };
-      setMessages((prev) => [...prev, botResponse]);
+        // Add bot response to messages
+        const botResponse = {
+          id: messages.length + 2,
+          text: botResponseText,
+          isBot: true
+        };
+        setMessages((prev) => [...prev, botResponse]);
+      } catch (error) {
+        // Update processing message with error
+        setMessages(prev => [
+          ...prev.slice(0, -1),
+          {
+            id: prev.length + 2,
+            text: "Sorry, the analysis is taking longer than expected. Please try again later.",
+            isBot: true
+          }
+        ]);
+      }
     } catch (error) {
       // Show error message
       setMessages(prev => [

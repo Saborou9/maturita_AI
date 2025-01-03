@@ -1,3 +1,4 @@
+import uuid
 from flask import Flask, request, jsonify, make_response
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
@@ -126,19 +127,38 @@ def chat():
 
         logging.info(f"Received chat request with message: {question}")
 
-        # Start the ChatbotFlow with the user's question
-        try:
-            chatbot_flow = ChatbotFlow()
-            logging.info("ChatbotFlow initialized successfully")
-            
-            final_response = chatbot_flow.kickoff(inputs={"topic": question})
-            logging.info(f"Generated response: {final_response}")
+        # Return immediate response
+        immediate_response = {
+            'status': 'processing',
+            'message': 'Analyzing your request...',
+            'response_id': str(uuid.uuid4())
+        }
+        
+        # Start the ChatbotFlow with the user's question in background
+        def process_message():
+            try:
+                chatbot_flow = ChatbotFlow()
+                logging.info("ChatbotFlow initialized successfully")
+                
+                final_response = chatbot_flow.kickoff(inputs={"topic": question})
+                logging.info(f"Generated response: {final_response}")
 
-            if not final_response:
-                logging.error("Empty response from ChatbotFlow")
-                return jsonify({'error': 'Empty response from chatbot'}), 500
+                if not final_response:
+                    logging.error("Empty response from ChatbotFlow")
+                    return
 
-            return jsonify({'response': final_response}), 200
+                # Store the final response (you might want to use a database or cache here)
+                responses[immediate_response['response_id']] = final_response
+
+            except Exception as flow_error:
+                logging.error(f"Error in ChatbotFlow: {str(flow_error)}", exc_info=True)
+                responses[immediate_response['response_id']] = {'error': 'Error processing your message'}
+
+        # Start processing in background
+        from threading import Thread
+        Thread(target=process_message).start()
+
+        return jsonify(immediate_response), 202
 
         except Exception as flow_error:
             logging.error(f"Error in ChatbotFlow: {str(flow_error)}", exc_info=True)
@@ -147,6 +167,20 @@ def chat():
     except Exception as e:
         logging.error(f"Error in chat endpoint: {str(e)}", exc_info=True)
         return jsonify({'error': 'Something went wrong. Please try again later.'}), 500
+
+# Dictionary to store responses (in production, use a proper database or cache)
+responses = {}
+
+@app.route('/api/chat/status/<response_id>', methods=['GET'])
+def check_response_status(response_id):
+    if response_id not in responses:
+        return jsonify({'status': 'processing', 'message': 'Still analyzing...'}), 200
+    
+    response = responses[response_id]
+    if 'error' in response:
+        return jsonify({'status': 'error', 'message': response['error']}), 500
+    
+    return jsonify({'status': 'complete', 'response': response}), 200
 
 if __name__ == '__main__':
     with app.app_context():
