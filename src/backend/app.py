@@ -160,10 +160,6 @@ def chat():
 
         return jsonify(immediate_response), 202
 
-        except Exception as flow_error:
-            logging.error(f"Error in ChatbotFlow: {str(flow_error)}", exc_info=True)
-            return jsonify({'error': 'Error processing your message'}), 500
-
     except Exception as e:
         logging.error(f"Error in chat endpoint: {str(e)}", exc_info=True)
         return jsonify({'error': 'Something went wrong. Please try again later.'}), 500
