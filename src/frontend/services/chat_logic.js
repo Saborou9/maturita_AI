@@ -9,7 +9,7 @@ export const fetchBotResponse = async (message) => {
       },
       body: JSON.stringify({ message }),
       credentials: 'include',
-      mode: 'cors'
+      mode: 'same-origin'
     });
 
     if (!response.ok) {
@@ -40,7 +40,7 @@ const pollForResponse = async (responseId) => {
       const statusResponse = await fetch(`/api/chat/status/${responseId}`, {
         method: 'GET',
         credentials: 'include',
-        mode: 'cors'
+        mode: 'same-origin'
       });
 
       if (!statusResponse.ok) {

@@ -6,6 +6,7 @@ const api = axios.create({
     'Content-Type': 'application/json'
   },
   withCredentials: true,
+  mode: 'same-origin'
 });
 
 // Add token to requests if it exists
