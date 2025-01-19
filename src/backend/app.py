@@ -2,8 +2,8 @@ import uuid
 import os
 from flask import Flask, request, jsonify, make_response, send_from_directory
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
-from models import db, User
-from config import Config
+from src.backend.models import db, User
+from src.backend.config import Config
 import logging
 from buddy.main import ChatbotFlow
 
@@ -193,7 +193,9 @@ def create_app():
     
     return app
 
-app = create_app()
+def get_app():
+    """Helper function for WSGI"""
+    return create_app()
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
