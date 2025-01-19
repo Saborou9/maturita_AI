@@ -182,7 +182,18 @@ def serve(path):
     else:
         return send_from_directory(app.static_folder, 'index.html')
 
-if __name__ == '__main__':
+def create_app():
+    app = Flask(__name__)
+    app.config.from_object(Config)
+    db.init_app(app)
+    jwt = JWTManager(app)
+    
     with app.app_context():
         db.create_all()
-    app.run(debug=True)
+    
+    return app
+
+app = create_app()
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
