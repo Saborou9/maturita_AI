@@ -39,3 +39,6 @@ out/
 # OS files
 Thumbs.db
 .aider*
+
+__pycache__/
+b_ai/
