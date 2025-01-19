@@ -171,7 +171,7 @@ def check_response_status(response_id):
     return jsonify({'status': 'complete', 'response': response}), 200
 
 # Configure static folder for React frontend
-app.static_folder = '../frontend/dist'
+app.static_folder = 'static'
 
 # Route to serve React frontend
 @app.route('/', defaults={'path': ''})
