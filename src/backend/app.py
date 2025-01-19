@@ -1,6 +1,6 @@
 import uuid
-from flask import Flask, request, jsonify, make_response
-from flask_cors import CORS
+import os
+from flask import Flask, request, jsonify, make_response, send_from_directory
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 from models import db, User
 from config import Config
@@ -11,14 +11,6 @@ app = Flask(__name__)
 app.config.from_object(Config)
 db.init_app(app)
 jwt = JWTManager(app)
-CORS(app, resources={
-    r"/api/*": {
-        "origins": ["http://localhost:5173"],
-        "methods": ["GET", "POST", "OPTIONS"],
-        "allow_headers": ["Content-Type", "Authorization", "X-Requested-With"],
-        "supports_credentials": True
-    }
-})
 
 logging.basicConfig(level=logging.DEBUG)
 
@@ -177,6 +169,18 @@ def check_response_status(response_id):
         return jsonify({'status': 'error', 'message': response['error']}), 500
     
     return jsonify({'status': 'complete', 'response': response}), 200
+
+# Configure static folder for React frontend
+app.static_folder = '../frontend/dist'
+
+# Route to serve React frontend
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def serve(path):
+    if path != "" and os.path.exists(os.path.join(app.static_folder, path)):
+        return send_from_directory(app.static_folder, path)
+    else:
+        return send_from_directory(app.static_folder, 'index.html')
 
 if __name__ == '__main__':
     with app.app_context():
